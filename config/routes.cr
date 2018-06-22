@@ -32,6 +32,7 @@ Amber::Server.configure do
   end
 
   routes :api do
+    post "/api/users", Api::UsersController, :create
   end
 
   routes :static do
