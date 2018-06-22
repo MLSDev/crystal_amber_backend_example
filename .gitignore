@@ -10,4 +10,4 @@ production.yml
 .DS_Store
 /bin/
 /node_modules
-./config/environments/development.yml
+config/environments/development.yml
