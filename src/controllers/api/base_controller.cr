@@ -1,31 +1,42 @@
+require "moonstone"
+
 module Api
-  class BaseController < Amber::Controller::Base
+  class BaseController < ApplicationController
+    include Moonstone::Api::Controller
+
     LAYOUT = nil
 
-    def errors_of(resource)
-      resource_errors = {} of String => Array(String)
+    def create
+      if create_params.valid?
+        resource = build_resource
 
-      resource.errors.each do |granite_error|
-        resource_errors[granite_error.field.to_s] ||= [] of String
-        resource_errors[granite_error.field.to_s].push granite_error.message.to_s
+        if resource.save
+          respond_with(201) do
+            json(resource.to_json)
+          end
+        else
+          respond_with(422) do
+            json(decorated_errors_of(resource).to_json)
+          end
+        end
+      else
+        params_errors = {} of String => Array(String)
+
+        create_params.errors.each do |error|
+          # [e.param, e.value, e.message]
+          params_errors[error.param] ||= [] of String
+          params_errors[error.param].push error.message
+        end
+
+        respond_with(400) do
+          json(params_errors.to_json)
+        end
       end
-
-      logger.info resource_errors
-
-      {
-        errors: resource_errors,
-      }
     end
 
-    def create
-      resource = build_resource
-
-      respond_with do
-        if resource.save
-          json(resource.to_json)
-        else
-          json(errors_of(resource).to_json)
-        end
+    private def create_params
+      params.validation do
+        permitted_create_params.each { |param| optional(param) { |p| true } }
       end
     end
   end

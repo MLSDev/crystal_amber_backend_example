@@ -62,7 +62,11 @@ shards:
 
   micrate:
     github: amberframework/micrate
-    version: 0.3.1
+    version: 0.3.3
+
+  moonstone:
+    github: DmytroStepaniuk/moonstone
+    commit: 5e11974cff9840c0431d8ea5a84e9331b6757501
 
   mysql:
     github: crystal-lang/crystal-mysql

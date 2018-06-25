@@ -1,16 +1,13 @@
 module Api
   class UsersController < BaseController
     private def build_resource
-      User.new \
-        email: create_params[:email]
+      User.new create_params.to_h
     end
 
-    private def create_params
-      params.validation do
-        required(:email)                 { |p| p.is_a? String }
-        optional(:password)              { |p| p.is_a? String }
-        optional(:password_confirmation) { |p| p.is_a? String }
-      end
+    private def permitted_create_params
+      [
+        :email, :password, :password_confirmation
+      ]
     end
   end
 end
