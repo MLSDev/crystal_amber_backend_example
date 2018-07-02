@@ -2,9 +2,18 @@ require "./initializers/**"
 
 require "amber"
 require "../src/models/**"
+require "../src/pipes/**"
+require "../src/decorators/**"
 
 require "../src/controllers/application_controller"
 require "../src/controllers/**"
+
+require "crypto/bcrypt/password"
+require "random/secure"
+
+class Granite::Base
+  include Decorator
+end
 
 # About Application.cr File
 #

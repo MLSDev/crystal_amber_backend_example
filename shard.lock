@@ -66,7 +66,7 @@ shards:
 
   moonstone:
     github: DmytroStepaniuk/moonstone
-    commit: 5e11974cff9840c0431d8ea5a84e9331b6757501
+    commit: 61c978cfc8e7829174429cb35c924e5f755d6aae
 
   mysql:
     github: crystal-lang/crystal-mysql

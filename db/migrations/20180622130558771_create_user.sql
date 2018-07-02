@@ -1,9 +1,10 @@
 -- +micrate Up
 CREATE TABLE users (
-  id         BIGSERIAL PRIMARY KEY,
-  email      VARCHAR(255),
-  created_at TIMESTAMP,
-  updated_at TIMESTAMP
+  id              BIGSERIAL PRIMARY KEY,
+  email           VARCHAR(255),
+  password_digest VARCHAR(255),
+  created_at      TIMESTAMP,
+  updated_at      TIMESTAMP
 );
 
 CREATE INDEX users_email_index ON users (email);
