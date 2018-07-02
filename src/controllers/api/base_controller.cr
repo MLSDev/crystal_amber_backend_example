@@ -5,6 +5,26 @@ class Api::BaseController < ApplicationController
 
   LAYOUT = nil
 
+  def index
+    respond_with(200) do
+      json(decorated_paginated_collection.to_json)
+    end
+  end
+
+  def show
+    resource = find_resource
+
+    if resource.nil?
+      respond_with(404) do
+        json({ errors: { base: "Record was not found" } }.to_json)
+      end
+    else
+      respond_with(200) do
+        json(resource.decorate.as_json.to_json)
+      end
+    end
+  end
+
   def create
     if create_params.valid?
       resource = build_resource

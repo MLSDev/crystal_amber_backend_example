@@ -14,7 +14,7 @@ class Api::Authenticate < Amber::Pipe::Base
   def call(context)
     token, options = authorization_token_and_options(context)
 
-    if session = Session.find_by(value: token)
+    if session = Session.find_by!(token: token)
       context.current_user    = session.user
 
       context.current_session = session
@@ -51,6 +51,6 @@ class Api::Authenticate < Amber::Pipe::Base
       options[option.first] = option[1]
     end
 
-    [options["token"], options.reject("token")]
+    [options["token"].to_s.sub(AUTHORIZATION_GSUB_PARAMS_ARRAY_FROM, ""), options.reject("token")]
   end
 end

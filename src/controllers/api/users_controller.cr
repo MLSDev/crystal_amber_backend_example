@@ -10,4 +10,22 @@ class Api::UsersController < Api::BaseController
       :email, :password, :password_confirmation
     ]
   end
+
+  private def find_resource
+    if params["id"]?
+      User.find_by(id: params["id"])
+    else
+      context.current_user
+    end
+  end
+
+  private def decorated_paginated_collection
+    {
+      collection: users.map { |user| user.decorate.as_json }
+    }
+  end
+
+  private def users
+    User.all
+  end
 end

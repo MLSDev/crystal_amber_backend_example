@@ -41,13 +41,17 @@ Amber::Server.configure do
   end
 
   routes :public_api do
-    post "/api/sessions", Api::SessionsController, :create
+    post "/api/sessions",  Api::SessionsController, :create
 
-    post "/api/users",    Api::UsersController,    :create
+    post "/api/users",     Api::UsersController,    :create
+
+    get "/api/users",      Api::UsersController,    :index
+
+    get  "/api/users/:id", Api::UsersController,    :show
   end
 
   routes :private_api do
-    # comming soon...
+    get  "/api/user",     Api::UsersController,     :show
   end
 
   routes :static do
