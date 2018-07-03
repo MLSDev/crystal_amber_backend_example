@@ -3,6 +3,8 @@ class User < Granite::Base
 
   property password : String?
 
+  property password_confirmation : String?
+
   adapter pg
   table_name users
 
@@ -25,6 +27,20 @@ class User < Granite::Base
     next true unless user.new_record?
 
     user.password.is_a?(String) && user.password != ""
+  end
+
+  validate :password_confirmation, "cann't be blank" do |user|
+    next true unless user.new_record?
+
+    user.password_confirmation.is_a?(String) && user.password_confirmation != ""
+  end
+
+  validate :password_confirmation, "doesn't match password" do |user|
+    next true unless user.new_record?
+
+    next true unless user.password_confirmation.is_a?(String)
+
+    user.password_confirmation == user.password
   end
 
   def set_password_digest

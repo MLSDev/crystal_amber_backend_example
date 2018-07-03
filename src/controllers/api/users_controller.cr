@@ -1,7 +1,8 @@
 class Api::UsersController < Api::BaseController
   private def build_resource
     User.new(create_params.to_h).tap do |user|
-      user.password = create_params["password"]
+      user.password              = create_params["password"]?
+      user.password_confirmation = create_params["password_confirmation"]?
     end
   end
 
