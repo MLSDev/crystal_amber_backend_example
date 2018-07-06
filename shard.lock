@@ -65,8 +65,8 @@ shards:
     version: 0.3.3
 
   moonstone:
-    github: DmytroStepaniuk/moonstone
-    commit: 61c978cfc8e7829174429cb35c924e5f755d6aae
+    github: MLSDev/moonstone
+    commit: 8a48f8054baeb04560232229d20040ff24d608e7
 
   mysql:
     github: crystal-lang/crystal-mysql
