@@ -41,8 +41,8 @@ dependencies:
     github: amberframework/citrine-i18n
     version: 0.3.2
 
-  moonstone:
-    github: MLSDev/moonstone
+  moonstones:
+    github: MLSDev/moonstones
 
 development_dependencies:
  garnet_spec:

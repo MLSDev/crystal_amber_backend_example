@@ -64,9 +64,9 @@ shards:
     github: amberframework/micrate
     version: 0.3.3
 
-  moonstone:
-    github: MLSDev/moonstone
-    commit: 8a48f8054baeb04560232229d20040ff24d608e7
+  moonstones:
+    github: MLSDev/moonstones
+    version: 0.0.3
 
   mysql:
     github: crystal-lang/crystal-mysql
